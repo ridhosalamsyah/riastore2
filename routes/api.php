@@ -22,6 +22,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('dashboard', [ProductController::class, 'index']);
 Route::get('details/{data}', [ProductController::class, 'show']);
 Route::get('type/{id}', [ProductController::class, 'type']);
+Route::get('category/{id}', [ProductController::class, 'category']);
 
 
 

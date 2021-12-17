@@ -87,8 +87,15 @@ class ProductController extends Controller
     public function type($id)
     {
         $data = Product::where('type_id', $id)->get();
+        return response()->json([
+            'status' => 'success',
+            'data' => $data
+        ],200);
 
-
+    }
+    public function category($id)
+    {
+        $data = Product::where('category_id', $id)->get();
         return response()->json([
             'status' => 'success',
             'data' => $data
