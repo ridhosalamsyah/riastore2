@@ -20,6 +20,13 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('dashboard', [ProductController::class, 'index']);
+Route::get('details/{data}', [ProductController::class, 'show']);
+Route::get('type/{id}', [ProductController::class, 'type']);
+
+
+
 Route::post('create', [ProductController::class, 'store']);
-Route::put('edit/{id}', [ProductController::class, 'update']);
+Route::put('edit/{product}', [ProductController::class, 'update']);
+Route::delete('delete/{product}', [ProductController::class, 'destroy']);
+
 

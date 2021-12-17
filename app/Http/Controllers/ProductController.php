@@ -31,7 +31,6 @@ class ProductController extends Controller
         ]);
 
         Product::create([
-            'user_id' => Auth::id(),
             'category_id' => $request->category_id,
             'type_id' => $request->type_id,
             'product' => $request->product,
