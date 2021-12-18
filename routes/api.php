@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\api\AuthController;
 use App\Http\Controllers\api\ProductController;
 
 /*
@@ -15,19 +16,27 @@ use App\Http\Controllers\api\ProductController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+
+Route::post('login', [AuthController::class, 'login']);
+Route::post('register', [AuthController::class, 'register']);
+
+
+Route::middleware(['auth:sanctum'])->group(function () {
+    Route::get('dashboard', [ProductController::class, 'index']);
+    Route::get('details/{data}', [ProductController::class, 'show']);
+    Route::get('type/{id}', [ProductController::class, 'type']);
+    Route::get('category/{id}', [ProductController::class, 'category']);
+
+    Route::post('create', [ProductController::class, 'store']);
+    Route::put('edit/{product}', [ProductController::class, 'update']);
+    Route::delete('delete/{product}', [ProductController::class, 'destroy']);
+
+    Route::post('logout', [AuthController::class, 'logout']);
 });
 
-Route::get('dashboard', [ProductController::class, 'index']);
-Route::get('details/{data}', [ProductController::class, 'show']);
-Route::get('type/{id}', [ProductController::class, 'type']);
-Route::get('category/{id}', [ProductController::class, 'category']);
 
-
-
-Route::post('create', [ProductController::class, 'store']);
-Route::put('edit/{product}', [ProductController::class, 'update']);
-Route::delete('delete/{product}', [ProductController::class, 'destroy']);
 
 
