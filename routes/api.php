@@ -25,7 +25,7 @@ Route::post('register', [AuthController::class, 'register']);
 
 
 Route::middleware(['auth:sanctum'])->group(function () {
-    Route::get('dashboard', [ProductController::class, 'index']);
+    Route::get('home', [ProductController::class, 'index']);
     Route::get('details/{data}', [ProductController::class, 'show']);
     Route::get('type/{id}', [ProductController::class, 'type']);
     Route::get('category/{id}', [ProductController::class, 'category']);
