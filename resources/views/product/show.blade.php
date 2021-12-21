@@ -10,15 +10,15 @@
 
             {{-- <p>By. <a href="/posts?author={{ $post->author->username }}" class="text-decoration-none">{{ $post->author->name }}</a> in <a href="/posts?category={{ $post->category->slug }}" class="text-decoration-none">{{ $post->category->name }}</a></p> --}}
 
-            <p>By : {{ $product->user->name }}</p>
+            {{-- <p>By : {{ $product->user->name }}</p> --}}
             <p>Category : <a href="/category/find/{{ $product->category_id }}" class="text-decoration-none">{{ $product->category->category }}</a></p>
 
 
             {{-- <img src="https://picsum.photos/seed/{{ $post->category->name }}/1200/400" alt="{{ $post->category->name }}" class="img-fluid"> --}}
 
-                <product class="my-3 fs-5   ">
+                {{-- <product class="my-3 fs-5   ">
                     <p>{{  $product->product  }}</p>
-                </product>
+                </product> --}}
 
             <a href="/home"class=" text-decoration-none">Back</a>
         </div>

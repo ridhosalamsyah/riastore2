@@ -15,13 +15,29 @@ class CategorySeeder extends Seeder
     public function run()
     {
         DB::table('categories')->insert([
-            'category' => "Baju",
-        ]);
-        DB::table('categories')->insert([
-            'category' => "Aksesoris",
-        ]);
-        DB::table('categories')->insert([
             'category' => "Celana",
         ]);
+        DB::table('categories')->insert([
+            'category' => "Gamis",
+        ]);
+        DB::table('categories')->insert([
+            'category' => "Koko",
+        ]);
+        DB::table('categories')->insert([
+            'category' => "Peci",
+        ]);
+        DB::table('categories')->insert([
+            'category' => "Cadar",
+        ]);
+        DB::table('categories')->insert([
+            'category' => "Kerudung",
+        ]);
+        DB::table('categories')->insert([
+            'category' => "Mukena",
+        ]);
+
+
+
+
     }
 }

@@ -37,3 +37,5 @@ Route::get('/category/edit/{id}', [App\Http\Controllers\CategoryController::clas
 Route::put('/category/update/{id}', [App\Http\Controllers\CategoryController::class, 'update'])->middleware('auth');
 Route::delete('/category/delete/{id}', [App\Http\Controllers\CategoryController::class, 'delete'])->middleware('auth');
 Route::get('/category/find/{id}', [App\Http\Controllers\CategoryController::class, 'find'])->middleware('auth');
+
+
