@@ -32,7 +32,7 @@ class AuthController extends Controller
 
         $response = [
             // 'user' => $user,
-            'message' => 'Register sukses',
+            'message' => 'Registrasi sukses',
             'token' => $token
         ];
         return response($response, 201);
@@ -83,13 +83,35 @@ class AuthController extends Controller
             'data' => [
                 'name' => $data->name,
                 'username' =>$data->username,
-                'email' =>$data->email
+                'email' =>$data->email,
+
                 ]
         ],200);
 
     }
     public function update(Request $request)
     {
+
+        if ($request->name) {
+            User::where('id', Auth::user()->id)->update([
+                'name' => $request->name,
+            ]);
+        }
+        if ($request->username) {
+            User::where('id', Auth::user()->id)->update([
+                'username' => $request->username,
+            ]);
+        }
+        if ($request->email) {
+            User::where('id', Auth::user()->id)->update([
+                'email' => $request->email,
+            ]);
+        }
+        if ($request->password) {
+            User::where('id', Auth::user()->id)->update([
+                'password' => Hash::make($request->password)
+            ]);
+        }
         // $request->validate([
         //     'name' => 'required|string|max:191',
         //     'username' => 'string|max:191|unique:users,username',
@@ -98,46 +120,46 @@ class AuthController extends Controller
         //     'password' => 'min:6|required_with:password_confirmation|same:password_confirmation',
         //     'password_confirmation' => 'min:6'
         // ]);
-        if (!$request->username) {
-            User::where('id', Auth::user()->id)->update([
-                'name' => $request->name,
-                'username' => Auth::user()->username,
-                'email' => $request->email,
-                'password' => Hash::make($request->password)
-            ]);
-        }
-        elseif (!$request->name) {
-            User::where('id', Auth::user()->id)->update([
-                'name' => Auth::user()->name,
-                'username' => $request->username,
-                'email' => $request->email,
-                'password' => Hash::make($request->password)
-            ]);
-        }
-        elseif (!$request->email) {
-            User::where('id', Auth::user()->id)->update([
-                'name' => $request->name,
-                'username' => $request->username,
-                'email' => Auth::user()->email,
-                'password' => Hash::make($request->password)
-            ]);
-        }
-        elseif (!$request->password) {
-            User::where('id', Auth::user()->id)->update([
-                'name' => $request->name,
-                'username' => $request->username,
-                'email' => $request->email,
-                'password' => Auth::user()->password
-            ]);
-        }
-        else{
-            User::where('id', Auth::user()->id)->update([
-                'name' => $request->name,
-                'username' => $request->username,
-                'email' => $request->email,
-                'password' => Hash::make($request->password)
-            ]);
-        }
+        // if (!$request->username) {
+        //     User::where('id', Auth::user()->id)->update([
+        //         'name' => $request->name,
+        //         'username' => Auth::user()->username,
+        //         'email' => $request->email,
+        //         'password' => Hash::make($request->password)
+        //     ]);
+        // }
+        // elseif (!$request->name) {
+        //     User::where('id', Auth::user()->id)->update([
+        //         'name' => Auth::user()->name,
+        //         'username' => $request->username,
+        //         'email' => $request->email,
+        //         'password' => Hash::make($request->password)
+        //     ]);
+        // }
+        // elseif (!$request->email) {
+        //     User::where('id', Auth::user()->id)->update([
+        //         'name' => $request->name,
+        //         'username' => $request->username,
+        //         'email' => Auth::user()->email,
+        //         'password' => Hash::make($request->password)
+        //     ]);
+        // }
+        // elseif (!$request->password) {
+        //     User::where('id', Auth::user()->id)->update([
+        //         'name' => $request->name,
+        //         'username' => $request->username,
+        //         'email' => $request->email,
+        //         'password' => Auth::user()->password
+        //     ]);
+        // }
+        // else{
+        //     User::where('id', Auth::user()->id)->update([
+        //         'name' => $request->name,
+        //         'username' => $request->username,
+        //         'email' => $request->email,
+        //         'password' => Hash::make($request->password)
+        //     ]);
+        // }
 
 
         $response = [
