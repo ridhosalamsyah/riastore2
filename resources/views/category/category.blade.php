@@ -1,5 +1,5 @@
 @extends('layouts.main')
-@section('title', 'Dashboard Categcory')
+@section('title', 'Dashboard Category')
 
 
 @section('content')

@@ -11,7 +11,7 @@
                     <a href="{{ url('/home') }}" class="btn btn-danger btn-sm">Kembali</a>
                 </div>
                 <div class="card-body row">
-                    <form action="{{ url('/update/'.$product->id) }}" method="POST">
+                    <form action="{{ url('/update/'.$product->id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('put')
                         <div class="mb-3">
@@ -25,7 +25,8 @@
                         </div>
                         <div class="mb-3">
                             <label for="image" class="form-label">Gambar</label>
-                            <input type="file" class="form-control @error('image') is-invalid @enderror" name="image" id="image" value="{{ $product->image }}" placeholder="image">
+                            <input type="file" class="form-control @error('image') is-invalid @enderror" name="image" id="image"  placeholder="image">
+                            <img src="{{ asset("uploads/products/".$product->image) }}" alt="" width="70px" height="70px">
                             @error('image')
                                 <div class="invalid-feedback">
                                     {{ $message }}

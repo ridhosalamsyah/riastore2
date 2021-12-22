@@ -6,12 +6,14 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12 mt-3">
+
+            
             <div class="card">
                 <div class="card-header">
                     <a href="{{ url('/home') }}" class="btn btn-danger btn-sm">Kembali</a>
                 </div>
                 <div class="card-body row">
-                    <form action="{{ url('/store') }}" method="POST">
+                    <form action="{{ url('/store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="mb-3">
                             <label for="title" class="form-label">Title</label>
@@ -33,7 +35,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="image" class="form-label">Gambar</label>
-                            <input type="file" class="form-control @error('image') is-invalid @enderror" name="image"" id="image" placeholder="image">
+                            <input type="file" class="form-control @error('image') is-invalid @enderror" name="image" id="image" placeholder="image">
                             @error('image')
                                 <div class="invalid-feedback">
                                     {{ $message }}
@@ -42,7 +44,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="price" class="form-label">Harga</label>
-                            <input type="number" class="form-control @error('price') is-invalid @enderror" name="price"" id="price" placeholder="price">
+                            <input type="number" class="form-control @error('price') is-invalid @enderror" name="price" id="price" placeholder="price">
                             @error('price')
                                 <div class="invalid-feedback">
                                     {{ $message }}
@@ -51,7 +53,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="stock" class="form-label">Stock</label>
-                            <input type="number" class="form-control @error('stock') is-invalid @enderror" name="stock"" id="stock" placeholder="stock">
+                            <input type="number" class="form-control @error('stock') is-invalid @enderror" name="stock" id="stock" placeholder="stock">
                             @error('stock')
                                 <div class="invalid-feedback">
                                     {{ $message }}
