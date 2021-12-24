@@ -34,6 +34,7 @@
                                 <tr>
                                         <td><a href="{{ url('/show/'.$item->id) }}" class="text-decoration-none">{{ $item->title }}</a></td>
                                         <td><img src="{{ asset("uploads/products/".$item->image) }}" alt="" width="70px" height="70px"></td>
+
                                         <td>{{ $item->product }}</td>
                                         <td>{{ $item->price }}</td>
                                         <td>{{ $item->stock }}</td>

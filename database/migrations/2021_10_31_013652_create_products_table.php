@@ -19,6 +19,7 @@ class CreateProductsTable extends Migration
             $table->unsignedBigInteger('type_id')->nullable();
             $table->string('title')->nullable();
             $table->string('image')->nullable();
+            $table->string('image-api')->nullable();
             $table->integer('price')->nullable();
             $table->integer('stock')->nullable();
             $table->text('product')->nullable();
