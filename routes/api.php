@@ -38,7 +38,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::put('profile/edit', [AuthController::class, 'update']);
 
 
-
     Route::post('logout', [AuthController::class, 'logout']);
 });
 
