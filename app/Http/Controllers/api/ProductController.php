@@ -16,7 +16,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $data = Product::latest()->get();
+        $data = Product::inRandomOrder()->limit(10)->get();
+
         return response()->json([
             'status' => 'sukses',
             'data' => $data
