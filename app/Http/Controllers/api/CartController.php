@@ -73,6 +73,24 @@ class CartController extends Controller
         }
 
     }
+    public function update(Request $request, Cart $cart)
+    {
+        // $product = Product::find($request->product_id);
+
+        $cart = Cart::find($cart->id);
+
+        $cart->quantity = $request->quantity;
+        $cart->totalprice = $request->quantity * $cart->baseprice;
+
+
+        $cart->update();
+
+        return response()->json([
+            'status' => 'success, Cart berhasil diubah',
+            'data' => $cart
+        ],201);
+
+    }
 
     public function checkout()
     {
