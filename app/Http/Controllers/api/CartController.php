@@ -5,6 +5,7 @@ namespace App\Http\Controllers\api;
 use App\Models\Cart;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
@@ -13,11 +14,12 @@ class CartController extends Controller
     public function index()
     {
 
-        $data = Cart::where('user_id', Auth::id());
 
-        if (!$data)
+        $data = Cart::where('user_id', Auth::id())->get();
+
+        if (!$data->isEmpty())
         {
-            $cart = $data->get();
+            $cart = Cart::where('user_id', Auth::id())->get();
             $totalQty = $cart->sum('quantity');
             $endPrice = $cart->sum('totalprice');
 
@@ -29,10 +31,10 @@ class CartController extends Controller
 
             ],200); // 200 HTTP_OK
         }
-        else
-        {
+
+        else {
             return response()->json([
-                'status' => 'Gagal memuat Keranjang, Keranjang Kosong',
+                'status' => 'Gagal memuat Keranjang, Keranjang Kosong!!',
             ],400);
         }
     }
