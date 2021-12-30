@@ -80,6 +80,18 @@ class CartController extends Controller
 
     }
 
+    public function destroy(Cart $cart)
+    {
+        $cart = Cart::find($cart->id);
+        $cart->delete();
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'cart berhasil di hapus!'
+        ],200);
+
+    }
+
 
 
 
