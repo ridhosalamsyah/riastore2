@@ -113,12 +113,10 @@ class CartController extends Controller
             $product->update();
 
 
-            // $delete = Cart::find($cart->id);
-            // $cart->delete();
+            $delete = Cart::find($cart->id);
+            $delete->delete();
             return response()->json([
                 'status' => 'Belanja berhasil barang telah terbeli',
-                'data' => $product,
-                'quantity' => $quantity
 
             ],200); // 200 HTTP_OK
         }
