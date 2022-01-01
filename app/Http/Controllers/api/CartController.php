@@ -13,8 +13,6 @@ class CartController extends Controller
 {
     public function index()
     {
-
-
         $data = Cart::where('user_id', Auth::id())->get();
 
         if (!$data->isEmpty())
@@ -59,12 +57,20 @@ class CartController extends Controller
             $data->baseprice = $product->price;
             $data->totalprice = $request->quantity * $product->price;
 
-            $data->save();
+            $data2 = DB::table('carts')->where('user_id', $data->user_id )->where('product_id', $data->product_id)->get();
+            if ($data2->isEmpty()) {
+                $data->save();
 
-            return response()->json([
-                'status' => 'success, barang berhasil ditambah ke keranjang',
-                'data' => $data
-            ],200);
+                return response()->json([
+                    'status' => 'success, barang berhasil ditambah ke keranjang',
+                    'data' => $data
+                ],200);
+            }
+            else {
+                return response()->json([
+                    'status' => 'Gagal menambahkan barang, barang sudah ada dalam cart ',
+                ],400);
+            }
         }
         else {
             return response()->json([
@@ -92,9 +98,36 @@ class CartController extends Controller
 
     }
 
-    public function checkout()
+    public function checkout(Request $request, Product $product, Cart $cart)
     {
+        $data = Cart::where('user_id', Auth::id())->get();
 
+        if (!$data->isEmpty())
+        {
+
+            $quantity = Cart::find($cart->id)->quantity;
+            $product_id = Cart::find($cart->id)->product_id;
+
+            $product = Product::find($product_id);
+            $product->stock = $product->stock - $quantity;
+            $product->update();
+
+
+            // $delete = Cart::find($cart->id);
+            // $cart->delete();
+            return response()->json([
+                'status' => 'Belanja berhasil barang telah terbeli',
+                'data' => $product,
+                'quantity' => $quantity
+
+            ],200); // 200 HTTP_OK
+        }
+
+        else {
+            return response()->json([
+                'status' => 'Belanja Gagal, Keranjang Kosong!!',
+            ],400);
+        }
 
     }
 
