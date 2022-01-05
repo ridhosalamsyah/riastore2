@@ -40,7 +40,7 @@
                                         <td>{{ $item->stock }}</td>
                                         <td>{{ $item->type->type }}</td>
                                         <td><a href="/category/find/{{ $item->category_id }}" class="text-decoration-none">{{ $item->category->category }}</a></td>
-                                        <td class="d-flex ">
+                                        <td class="d-flex">
                                             <a href="{{ url('/edit/'.$item->id) }}" class="btn btn-primary btn-sm">Edit</a>
                                             {{-- <a href="{{ url('/delete/'.$item->id) }}" class="btn btn-danger btn-sm">Hapus</a> --}}
                                             <form action="{{ url('/delete/'.$item->id) }}" method="post">
@@ -49,7 +49,6 @@
                                                 <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin menghapus?')">Hapus</button>
                                             </form>
                                         <td>
-
                                     </tr>
                                 @endforeach
                             </table>
