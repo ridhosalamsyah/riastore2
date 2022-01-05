@@ -12,6 +12,19 @@
 
             {{-- <p>By : {{ $product->user->name }}</p> --}}
             <p>Category : <a href="/category/find/{{ $product->category_id }}" class="text-decoration-none">{{ $product->category->category }}</a></p>
+            <div>
+                <img src="{{ asset("uploads/products/".$product->image) }}" alt="" width="" height="">
+            </div>
+            <p>
+                tipe : {{ $product->type->type }}
+            </p>
+            <p>
+                harga {{ $product->price }}
+            </p>
+            <p>
+                stock : {{ $product->stock }}
+            </p>
+
 
 
             {{-- <img src="https://picsum.photos/seed/{{ $post->category->name }}/1200/400" alt="{{ $post->category->name }}" class="img-fluid"> --}}
@@ -19,8 +32,10 @@
                 {{-- <product class="my-3 fs-5   ">
                     <p>{{  $product->product  }}</p>
                 </product> --}}
+                <div>
 
-            <a href="/home"class=" text-decoration-none">Back</a>
+                    <a href="/home"class=" text-decoration-none">Back</a>
+                </div>
         </div>
     </div>
 </div>

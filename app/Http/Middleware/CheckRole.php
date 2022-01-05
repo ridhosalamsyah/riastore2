@@ -29,6 +29,6 @@ class CheckRole
         }
     }
 
-    return redirect('/');
+    return redirect('/')->with('status', 'You are not an Admin!');
     }
 }
