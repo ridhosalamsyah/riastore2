@@ -14,7 +14,7 @@ class AuthController extends Controller
     {
         $data = $request->validate([
             'name' => 'required|string|max:191',
-            
+            'username' => 'required|string|max:191|unique:users,username',
             'email' => 'required|email|max:191|unique:users,email',
             // 'password' => 'required|string',
             'password' => 'min:6|required_with:password_confirmation|same:password_confirmation',
@@ -28,7 +28,7 @@ class AuthController extends Controller
             'password' => Hash::make($data['password']),
         ]);
 
-        $token = $user->createToken('ringsampahToken')->plainTextToken;
+        $token = $user->createToken('riastoreToken')->plainTextToken;
 
         $response = [
             // 'user' => $user,
@@ -58,7 +58,7 @@ class AuthController extends Controller
             return response(['message' => 'Invalid Credentials'], 401);
         }
         else {
-            $token = $user->createToken('ringsampahTokenLogin')->plainTextToken;
+            $token = $user->createToken('riastoreTokenLogin')->plainTextToken;
             $response = [
                 'message' => 'Login Sukses',
                 'token' => $token,
